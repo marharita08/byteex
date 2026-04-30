@@ -74,7 +74,7 @@ export const PartnersAndProperties = () => {
     <div className="w-full pb-24 relative pt-20">
       <div className="absolute top-0 left-0 w-full bg-linear-to-b from-background via-background/18 to-background/0 h-[530px] z-0" />
       <div className="relative z-10">
-        <section className="max-w-7xl mx-auto px-6 mb-24 flex flex-col items-center">
+        <section className="max-w-[1253px] mx-auto px-6 mb-30 flex flex-col items-center">
           <h3 className="text-[20px] leading-[23px] tracking-[0.03em] text-neutral-100 mb-10">
             as seen in
           </h3>
@@ -84,12 +84,12 @@ export const PartnersAndProperties = () => {
             ))}
           </div>
         </section>
-        <section className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start gap-12 lg:gap-24">
-          <div className="flex-1 w-full">
-            <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary mb-20 font-sofia">
+        <section className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start justify-between">
+          <div className=" w-[570px]">
+            <h2 className="text-[32px] pl-8 leading-[40px] tracking-[0.04em] text-primary mb-20 font-sofia">
               Loungewear you can be proud of.
             </h2>
-            <div className="flex flex-col gap-8">
+            <div className="flex pl-6 flex-col gap-8">
               {properties.map((prop, i) => (
                 <div key={i} className="flex items-start gap-5">
                   <div className="flex items-center rounded-full bg-background w-[42px] h-[42px] shrink-0 justify-center">
@@ -108,7 +108,7 @@ export const PartnersAndProperties = () => {
             </div>
           </div>
 
-          <div className="flex-1 w-full flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <div className="relative flex items-center justify-center">
               <button
                 onClick={handlePrev}

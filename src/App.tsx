@@ -1,3 +1,4 @@
+import { BuildConnection } from "./components/BuildConnection";
 import { HeroSection } from "./components/HeroSection";
 import { PartnersAndProperties } from "./components/PartnersAndProperties";
 
@@ -6,6 +7,7 @@ function App() {
     <main>
       <HeroSection />
       <PartnersAndProperties />
+      <BuildConnection />
     </main>
   );
 }
