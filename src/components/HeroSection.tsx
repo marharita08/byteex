@@ -1,15 +1,24 @@
+import amyP from "@/assets/amy_p.png";
 import arrowRight from "@/assets/arrow_right.svg";
 import cart from "@/assets/cart.svg";
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
 import logo from "@/assets/logo.png";
+import star from "@/assets/star.svg";
 import sunAndMoon from "@/assets/sun_and_moon.svg";
 import waves from "@/assets/waves.svg";
 
+const review = {
+  id: 1,
+  text: "Overjoyed with my Loungewear set. I have the jogger and the sweatshirt. Quality product on every level. From the compostable packaging, to the supplied washing bag, even the garments smells like fresh herbs when I first held them. ",
+  author: "Amy P.",
+  avatar: amyP,
+};
+
 export const HeroSection = () => {
   return (
-    <section className="flex flex-col w-full">
+    <section className="flex flex-col w-full mb-14">
       <div className="bg-background text-neutral-500 font-suisse text-center px-5 py-2.5 text-[11px] font-medium tracking-wide">
         CONSCIOUSLY MADE BUTTER SOFT STAPLES FOR EVERY DAY (OR NIGHT)
         <span className="mx-3 opacity-50 hidden sm:inline">|</span>
@@ -23,9 +32,9 @@ export const HeroSection = () => {
       <div className="max-w-7xl mx-auto px-6 pt-8">
         <img src={logo} alt="byteex" />
         <div className="flex flex-col lg:flex-row items-start w-full gap-12 mt-16 pl-2">
-          <div className="flex flex-col gap-8 text-center lg:text-left max-w-[480px]">
+          <div className="flex flex-col gap-8 text-center lg:text-left max-w-[480px] relative">
             <div className="flex flex-col gap-4">
-              <h1 className="text-4xl leading-tight text-primary">
+              <h1 className="text-4xl leading-tight tracking-[0.04em] text-primary">
                 Don’t apologize for being comfortable.
               </h1>
             </div>
@@ -64,6 +73,37 @@ export const HeroSection = () => {
                 <img src={arrowRight} alt="" />
               </button>
             </div>
+            <section className="absolute -bottom-53 z-10">
+              <div className="bg-background-white py-3 px-5 rounded-xl border border-[#EDEDED] shadow-sm flex flex-col items-center max-w-[416px] w-full gap-2">
+                <div className="flex items-center w-full justify-between">
+                  <div className="flex items-center gap-4 mt-2">
+                    <img
+                      src={review.avatar}
+                      alt={review.author}
+                      className="w-10 h-10"
+                    />
+                    <span className="text-neutral-40 text-[15px]">
+                      {review.author}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-px">
+                      <img src={star} alt="star" />
+                      <img src={star} alt="star" />
+                      <img src={star} alt="star" />
+                      <img src={star} alt="star" />
+                      <img src={star} alt="star" />
+                    </div>
+                    <div className="font-suisse text-[11px] text-neutral-200">
+                      One of 500+ 5 Star Reviews Online
+                    </div>
+                  </div>
+                </div>
+                <p className="text-neutral-400 text-xs font-suisse leading-[23px] tracking-[0.04em]">
+                  {review.text}
+                </p>
+              </div>
+            </section>
           </div>
 
           <div className="w-[725px] flex items-center">
