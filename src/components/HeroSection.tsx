@@ -1,0 +1,80 @@
+import arrowRight from "@/assets/arrow_right.svg";
+import cart from "@/assets/cart.svg";
+import hero1 from "@/assets/hero-1.png";
+import hero2 from "@/assets/hero-2.png";
+import hero3 from "@/assets/hero-3.png";
+import logo from "@/assets/logo.png";
+import sunAndMoon from "@/assets/sun_and_moon.svg";
+import waves from "@/assets/waves.svg";
+
+export const HeroSection = () => {
+  return (
+    <section className="flex flex-col w-full">
+      <div className="bg-background text-neutral-500 font-suisse text-center px-5 py-2.5 text-[11px] font-medium tracking-wide">
+        CONSCIOUSLY MADE BUTTER SOFT STAPLES FOR EVERY DAY (OR NIGHT)
+        <span className="mx-3 opacity-50 hidden sm:inline">|</span>
+        <br className="sm:hidden mt-1" />
+        FREE SHIPPING on orders &gt; $200
+        <span className="mx-3 opacity-50 hidden sm:inline">|</span>
+        <br className="sm:hidden mt-1" />
+        easy 45 day return window.
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 pt-8">
+        <img src={logo} alt="byteex" />
+        <div className="flex flex-col lg:flex-row items-start w-full gap-12 mt-16 pl-2">
+          <div className="flex flex-col gap-8 text-center lg:text-left max-w-[480px]">
+            <div className="flex flex-col gap-4">
+              <h1 className="text-4xl leading-tight text-primary">
+                Don’t apologize for being comfortable.
+              </h1>
+            </div>
+
+            <div className="flex flex-col gap-3 text-base leading-relaxed text-neutral-400 max-w-lg mx-auto lg:mx-0 items-center lg:items-start">
+              <div className="flex items-start gap-3">
+                <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
+                  <img src={sunAndMoon} alt="" />
+                </div>
+                <p className="mt-1">
+                  Beautiful, comfortable loungewear for day or night.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
+                  <img src={cart} alt="" />
+                </div>
+                <p className="mt-1">
+                  No wasteful extras, like tags or plastic packaging.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
+                  <img src={waves} alt="" />
+                </div>
+                <p className="mt-1">
+                  Our signature fabric is incredibly comfortable — unlike
+                  anything you’ve ever felt.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-[356px] h-[56px]">
+                <span>Customize Your Outfit</span>
+                <img src={arrowRight} alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div className="w-[725px] flex items-center">
+            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -mr-17" />
+            <img src={hero1} alt="" className="-mr-15 z-10" />
+            <img src={hero2} alt="" className="z-20" />
+            <img src={hero3} alt="" className="-ml-15 z-10" />
+            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -ml-17" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
