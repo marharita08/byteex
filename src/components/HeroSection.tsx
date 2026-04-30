@@ -107,11 +107,11 @@ export const HeroSection = () => {
           </div>
 
           <div className="w-[725px] flex items-center">
-            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -mr-17" />
-            <img src={hero1} alt="" className="-mr-15 z-10" />
-            <img src={hero2} alt="" className="z-20" />
-            <img src={hero3} alt="" className="-ml-15 z-10" />
-            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -ml-17" />
+            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -mr-16" />
+            <img src={hero1} alt="" className="-mr-15 z-10 w-[209px]" />
+            <img src={hero2} alt="" className="z-20 w-[260px]" />
+            <img src={hero3} alt="" className="-ml-15 z-10 w-[209px]" />
+            <div className="w-[134px] h-[189px] bg-linear-to-t shrink-0 from-background to-background/30 -ml-16" />
           </div>
         </div>
       </div>
