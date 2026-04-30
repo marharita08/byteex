@@ -1,7 +1,13 @@
 import { HeroSection } from "./components/HeroSection";
+import { PartnersAndProperties } from "./components/PartnersAndProperties";
 
 function App() {
-  return <HeroSection />;
+  return (
+    <main>
+      <HeroSection />
+      <PartnersAndProperties />
+    </main>
+  );
 }
 
 export default App;
