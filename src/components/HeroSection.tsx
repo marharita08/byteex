@@ -37,7 +37,7 @@ const HeroGallery = ({ className }: { className?: string }) => (
 
 export const HeroSection = () => {
   return (
-    <section className="flex flex-col w-full mb-[62px]">
+    <section className="flex flex-col w-full mb-25 md:mb-[62px]">
       <div className="bg-background text-neutral-500 font-suisse text-center px-5 py-2.5 text-[11px] font-medium tracking-wide">
         <span className="hidden md:inline">
           CONSCIOUSLY MADE BUTTER SOFT STAPLES FOR EVERY DAY (OR NIGHT) |{" "}
@@ -92,7 +92,7 @@ export const HeroSection = () => {
               </button>
             </div>
 
-            <div className="order-5 xl:absolute xl:-bottom-44 xl:left-0 z-10 w-full max-w-[388px] xl:w-[416px] xl:max-w-none mt-6 xl:mt-0 mx-auto xl:mx-0">
+            <div className="order-5 absolute -bottom-33 md:-bottom-44 xl:-bottom-44 xl:left-0 z-10 w-full max-w-[388px] xl:w-[416px] xl:max-w-none mt-6 xl:mt-0 mx-auto xl:mx-0">
               <div className="bg-background-white py-4 xl:py-3 px-5 rounded-xl border border-border-light shadow-sm flex flex-col items-center gap-3 xl:gap-2">
                 <div className="flex items-center w-full justify-between">
                   <div className="flex w-full items-center gap-4">
@@ -120,7 +120,7 @@ export const HeroSection = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-neutral-400 text-xs font-suisse leading-[20px] xl:leading-[23px] tracking-[0.04em] text-left">
+                <p className="text-neutral-400 text-xs font-suisse leading-[20px] xl:leading-[23px] tracking-[0.04em] text-left line-clamp-2 md:line-clamp-none">
                   {review.text}
                 </p>
               </div>
