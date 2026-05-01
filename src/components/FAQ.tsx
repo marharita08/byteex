@@ -41,7 +41,7 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="w-full pb-24 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between">
+    <section className="w-full pb-10.5 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between">
       <div className="w-full lg:w-[631px]">
         <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia font-normal mb-10">
           Frequently asked questions.
