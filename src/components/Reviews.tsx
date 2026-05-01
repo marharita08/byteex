@@ -57,7 +57,7 @@ export const Reviews = () => {
   const row2 = reviewImages.slice(11);
 
   return (
-    <section className="w-full pb-24 flex flex-col items-center overflow-hidden">
+    <section className="w-full pb-26 flex flex-col items-center overflow-hidden">
       <div className="max-w-[700px] mx-auto px-6 text-center mb-14 flex flex-col gap-6">
         <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
           What are our fans saying?
