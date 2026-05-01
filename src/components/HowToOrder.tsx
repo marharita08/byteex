@@ -1,28 +1,26 @@
 import arrowRight from "@/assets/arrow_right.svg";
-import cart from "@/assets/cart.svg";
 import star from "@/assets/star.svg";
 import sunAndMoon from "@/assets/sun_and_moon.svg";
-import truck from "@/assets/truck.svg";
+
+import { CartIcon } from "./icons/CartIcon";
+import { TruckIcon } from "./icons/TruckIcon";
 
 export const HowToOrder = () => {
   const steps = [
     {
       title: "You save.",
       desc: "Browse our comfort sets and save 15% when you bundle.",
-      icon: cart,
-      iconClassName: "w-[51px]",
+      icon: <CartIcon className="text-primary w-[51px] h-[41px]" />,
     },
     {
       title: "We ship.",
       desc: "We ship your items within 1-2 days of receiving your order.",
-      icon: truck,
-      iconClassName: "w-[68px]",
+      icon: <TruckIcon className="text-primary w-[68px] h-[48px]" />,
     },
     {
       title: "You enjoy!",
       desc: "Wear hernest around the house, out on the town, or in bed.",
-      icon: sunAndMoon,
-      iconClassName: "w-[60px]",
+      icon: <img src={sunAndMoon} alt="" className="w-[60px]" />,
     },
   ];
 
@@ -36,14 +34,10 @@ export const HowToOrder = () => {
         {steps.map((step, idx) => (
           <div
             key={idx}
-            className={`flex-1 flex flex-col items-center border p-4 border-[#EDEDED] rounded-lg text-center w-[346px] h-[320px] justify-center ${idx % 2 === 0 ? "bg-background-gray" : "bg-background"}`}
+            className={`flex-1 flex flex-col items-center border p-4 border-border-light rounded-lg text-center w-[346px] h-[320px] justify-center ${idx % 2 === 0 ? "bg-background-gray" : "bg-background"}`}
           >
             <div className="flex items-center shrink-0 justify-center mb-5">
-              <img
-                src={step.icon}
-                alt={step.title}
-                className={step.iconClassName}
-              />
+              {step.icon}
             </div>
             <h3 className="text-[22px] leading-[40px] tracking-[0.04em] text-primary font-sofia mb-4">
               {step.title}

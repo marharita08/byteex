@@ -26,10 +26,10 @@ export const InfoBanner = () => {
           {stats.map((stat, idx) => (
             <div key={idx} className="flex items-center">
               {idx > 0 && (
-                <div className="w-px h-[122px] bg-[#C4C4C480] mx-11" />
+                <div className="w-px h-[122px] bg-divider/50 mx-11" />
               )}
               <div className="flex flex-col items-center gap-2">
-                <div className="w-[42px] h-[42px] bg-[#E4E4E4] rounded-full flex items-center justify-center">
+                <div className="w-[42px] h-[42px] bg-surface-gray rounded-full flex items-center justify-center">
                   <img src={stat.icon} alt="" />
                 </div>
                 <span className="text-[22px] leading-[20px] tracking-[0.02em] font-sofia font-semibold text-primary">

@@ -14,6 +14,13 @@
   --color-neutral-400: #676869;
   --color-neutral-500: #565656;
 
+  --color-success: #1FAD40;
+  --color-border-light: #EDEDED;
+  --color-border-muted: #EAEAEA;
+  --color-divider: #C4C4C4;
+  --color-accent-blue: #1C2E58;
+  --color-surface-gray: #E4E4E4;
+
   --font-suisse: 'Inter', sans-serif;
   --font-sofia: 'Nunito', sans-serif;
 }

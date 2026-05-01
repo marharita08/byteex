@@ -49,7 +49,7 @@ export const FAQ = () => {
 
         <div className="flex flex-col">
           {faqItems.map((item, idx) => (
-            <div key={idx} className="border-t border-[#EAEAEA]">
+            <div key={idx} className="border-t border-border-muted">
               <button
                 onClick={() =>
                   setExpandedIndex(expandedIndex === idx ? null : idx)
@@ -73,27 +73,15 @@ export const FAQ = () => {
               </div>
             </div>
           ))}
-          <div className="border-t border-[#EAEAEA]" />
+          <div className="border-t border-border-muted" />
         </div>
       </div>
 
       <div className="w-full lg:w-[430px] h-[645px] relative shrink-0">
         <div className="relative w-full h-full">
-          <div
-            className="absolute left-[30px] top-[67px] w-[149px] h-[187px] z-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(249, 240, 229, 1) 0%, rgba(249, 240, 229, 0.31) 100%)",
-            }}
-          />
+          <div className="absolute left-[30px] top-[67px] w-[149px] h-[187px] z-0 bg-linear-to-b from-background to-background/31" />
 
-          <div
-            className="absolute left-[238px] top-[330px] w-[134px] h-[189px] z-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(249, 240, 229, 1) 0%, rgba(249, 240, 229, 0.31) 100%)",
-            }}
-          />
+          <div className="absolute left-[238px] top-[330px] w-[134px] h-[189px] z-0 bg-linear-to-b from-background to-background/31" />
 
           <img
             src={faq2}
