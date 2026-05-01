@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import arrowRight from "@/assets/arrow_right.svg";
 import canadianLiving from "@/assets/canadian_living.png";
 import ecoStylist from "@/assets/eco_stylist.png";
 import galleryMin1 from "@/assets/gallery_miniature_1.png";
@@ -9,6 +10,7 @@ import jillianHarris from "@/assets/jillian_harris.png";
 import leaf from "@/assets/leaf.svg";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
+import star from "@/assets/star.svg";
 import sunAndMoon from "@/assets/sun_and_moon.svg";
 import theEcoHub from "@/assets/the_eco_hub.png";
 import trendhunter from "@/assets/trendhunter.png";
@@ -16,6 +18,12 @@ import waves from "@/assets/waves.svg";
 import whiteRobe from "@/assets/white_robe.jpg";
 
 import { CartIcon } from "./icons/CartIcon";
+
+interface GalleryImage {
+  main: string;
+  thumb: string;
+  name: string;
+}
 
 export const PartnersAndProperties = () => {
   const partners = [
@@ -40,12 +48,12 @@ export const PartnersAndProperties = () => {
     {
       title: "Unimaginably comfortable.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: <img src={sunAndMoon} alt="" className="w-6.5 h-6.5" />,
+      icon: <img src={sunAndMoon} alt="sun and moon" className="w-6.5 h-6.5" />,
     },
     {
       title: "Made for living in.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: <img src={waves} alt="" className="w-[22px] h-[18px]" />,
+      icon: <img src={waves} alt="waves" className="w-[22px] h-[18px]" />,
     },
   ];
 
@@ -60,6 +68,14 @@ export const PartnersAndProperties = () => {
   ];
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [logoPageIdx, setLogoPageIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLogoPageIdx((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleNext = () => {
     setActiveImageIdx((prev) => (prev + 1) % galleryImages.length);
@@ -72,84 +88,207 @@ export const PartnersAndProperties = () => {
   };
 
   return (
-    <div className="w-full pb-13.5 relative pt-21">
+    <div className="w-full pb-13.5 relative pt-12 md:pt-21 overflow-hidden">
       <div className="absolute top-0 left-0 w-full bg-linear-to-b from-background via-background/18 to-background/0 h-[530px] z-0" />
+
+      <div className="absolute bottom-0 left-0 w-full h-[600px] bg-linear-to-t from-background via-background/18 to-background/0 z-0 md:hidden" />
+
       <div className="relative z-10">
-        <section className="max-w-[1253px] mx-auto px-6 mb-29 flex flex-col items-center">
-          <h3 className="text-[20px] leading-[23px] tracking-[0.03em] text-neutral-100 mb-10">
+        <section className="max-w-[1253px] mx-auto px-6 mb-16 md:mb-29 flex flex-col items-center">
+          <h3 className="text-[18px] md:text-[20px] leading-[23px] tracking-[0.03em] text-neutral-100 mb-8 md:mb-10 lowercase">
             as seen in
           </h3>
-          <div className="flex justify-between items-center w-full">
-            {partners.map((partner, idx) => (
-              <img key={idx} src={partner.src} alt={partner.name} />
-            ))}
-          </div>
-        </section>
-        <section className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start justify-between">
-          <div className=" w-[570px]">
-            <h2 className="text-[32px] pl-8 leading-[40px] tracking-[0.04em] text-primary mb-20 font-sofia">
-              Loungewear you can be proud of.
-            </h2>
-            <div className="flex pl-6 flex-col gap-8">
-              {properties.map((prop, i) => (
-                <div key={i} className="flex items-start gap-5">
-                  <div className="flex items-center rounded-full bg-background w-[42px] h-[42px] shrink-0 justify-center">
-                    {prop.icon}
+
+          <div className="w-full md:hidden flex flex-col items-center gap-6">
+            <div className="flex justify-center items-center w-full gap-4 h-10">
+              {partners
+                .slice(logoPageIdx, logoPageIdx + 3)
+                .map((partner, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-1 flex justify-center items-center h-full overflow-hidden"
+                  >
+                    <img
+                      src={partner.src}
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain scale-90 origin-center"
+                    />
                   </div>
-                  <div className="flex flex-col gap-1.5 pt-1">
-                    <h4 className="text-[22px] leading-[24px] tracking-[0.04em] text-primary">
-                      {prop.title}
-                    </h4>
-                    <p className="text-[15px] font-suisse text-neutral-300 leading-[23px] tracking-[0.03em]">
-                      {prop.desc}
-                    </p>
-                  </div>
-                </div>
+                ))}
+            </div>
+            <div className="flex gap-2">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  onClick={() => setLogoPageIdx(i)}
+                  className={`w-2 h-2 rounded-full cursor-pointer transition-colors duration-300 ${logoPageIdx === i ? "bg-primary" : "bg-primary/20"}`}
+                />
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center">
-              <button
-                onClick={handlePrev}
-                className="absolute -left-10 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-              >
-                <img src={navLeft} alt="nav left" />
-              </button>
+          {/* Logo Row for Desktop */}
+          <div className="hidden md:flex justify-between items-center w-full gap-4">
+            {partners.map((partner, idx) => (
+              <img
+                key={idx}
+                src={partner.src}
+                alt={partner.name}
+                className="h-auto object-contain"
+              />
+            ))}
+          </div>
+        </section>
 
-              <div className="w-[433px] h-[648px] relative shrink-0">
-                <img
-                  src={galleryImages[activeImageIdx].main}
-                  alt={galleryImages[activeImageIdx].name}
-                  className="transition-opacity duration-300 w-full h-full object-cover object-top"
-                />
-                <div className="flex flex-row gap-4 absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
-                  {galleryImages.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveImageIdx(idx)}
-                      className={`transition-all duration-200 cursor-pointer ${activeImageIdx === idx ? "ring-2 ring-white" : "opacity-70 hover:opacity-100"}`}
-                    >
-                      <img src={img.thumb} alt={`Thumbnail ${idx}`} />
-                    </button>
+        <section className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:gap-0">
+          <div className="w-full md:w-[570px] flex flex-col items-center md:items-start order-1">
+            <h2 className="text-[26px] md:text-[32px] md:pl-8 leading-[34px] md:leading-[40px] tracking-[0.04em] text-primary mb-10 md:mb-20 font-sofia text-center md:text-left">
+              Loungewear you can be proud of.
+            </h2>
+
+            {/* Mobile Gallery */}
+            <div className="flex md:hidden flex-col items-center mb-10 w-full order-2">
+              <GalleryContent
+                galleryImages={galleryImages}
+                activeImageIdx={activeImageIdx}
+                setActiveImageIdx={setActiveImageIdx}
+                handlePrev={handlePrev}
+                handleNext={handleNext}
+                isMobile={true}
+              />
+            </div>
+
+            <div className="flex md:pl-6 flex-col order-3 w-full">
+              {properties.map((prop, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col items-center md:items-start w-full"
+                >
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-5 text-center md:text-left py-8 md:py-0 md:mb-8 last:mb-0">
+                    <div className="flex items-center rounded-full bg-background w-[42px] h-[42px] shrink-0 justify-center">
+                      {prop.icon}
+                    </div>
+                    <div className="flex flex-col gap-1.5 pt-1">
+                      <h4 className="text-[20px] md:text-[22px] leading-[24px] tracking-[0.04em] text-primary font-medium md:font-normal">
+                        {prop.title}
+                      </h4>
+                      <p className="text-[14px] md:text-[15px] font-suisse text-neutral-300 leading-[22px] md:leading-[23px] tracking-[0.03em] max-w-[340px] md:max-w-none">
+                        {prop.desc}
+                      </p>
+                    </div>
+                  </div>
+                  {/* Mobile Divider */}
+                  {i < properties.length - 1 && (
+                    <div className="w-[334px] h-px bg-divider/50 md:hidden" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile CTA Button and Stars */}
+            <div className="flex md:hidden mt-12 w-full flex-col items-center gap-4 order-4">
+              <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-full max-w-[381px] h-[56px] transition-opacity hover:opacity-90">
+                <span>Customize Your Outfit</span>
+                <img src={arrowRight} alt="arrow right" className="w-6 h-6" />
+              </button>
+              <div className="flex items-center gap-2">
+                <div className="flex gap-px">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <img key={i} src={star} alt="star" className="w-3 h-3" />
                   ))}
                 </div>
+                <span className="text-[12px] leading-[20px] font-suisse text-neutral-200">
+                  Over 500+ 5 Star Reviews Online
+                </span>
               </div>
-
-              <button
-                onClick={handleNext}
-                className="absolute -right-10 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-              >
-                <img src={navRight} alt="nav right" />
-              </button>
             </div>
-            <p className="text-center mt-6 text-sm font-suisse text-neutral-400 transition-all duration-300">
-              {galleryImages[activeImageIdx].name}
-            </p>
+          </div>
+
+          {/* Desktop Gallery */}
+          <div className="hidden md:flex flex-col items-center order-2">
+            <GalleryContent
+              galleryImages={galleryImages}
+              activeImageIdx={activeImageIdx}
+              setActiveImageIdx={setActiveImageIdx}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+              isMobile={false}
+            />
           </div>
         </section>
       </div>
     </div>
+  );
+};
+
+const GalleryContent = ({
+  galleryImages,
+  activeImageIdx,
+  setActiveImageIdx,
+  handlePrev,
+  handleNext,
+  isMobile,
+}: {
+  galleryImages: GalleryImage[];
+  activeImageIdx: number;
+  setActiveImageIdx: (idx: number) => void;
+  handlePrev: () => void;
+  handleNext: () => void;
+  isMobile: boolean;
+}) => {
+  return (
+    <>
+      <div className="relative flex items-center justify-center w-full">
+        <button
+          onClick={handlePrev}
+          className={`absolute ${isMobile ? "-left-4" : "-left-10"} top-1/2 -translate-y-1/2 cursor-pointer z-10`}
+        >
+          <img
+            src={navLeft}
+            alt="nav left"
+            className={isMobile ? "w-8 h-8" : ""}
+          />
+        </button>
+
+        <div
+          className={`${isMobile ? "w-full aspect-[2/3] max-w-[300px]" : "w-[433px] h-[648px]"} relative shrink-0`}
+        >
+          <img
+            src={galleryImages[activeImageIdx].main}
+            alt={galleryImages[activeImageIdx].name}
+            className="transition-opacity duration-300 w-full h-full object-cover object-top"
+          />
+          <div className="flex flex-row gap-2 md:gap-4 absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%] justify-center">
+            {galleryImages.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveImageIdx(idx)}
+                className={`transition-all duration-200 cursor-pointer ${activeImageIdx === idx ? "ring-2 ring-white scale-110" : "opacity-70 hover:opacity-100"}`}
+              >
+                <img
+                  src={img.thumb}
+                  alt={`Thumbnail ${idx}`}
+                  className={isMobile ? "w-8 h-8 object-cover" : ""}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button
+          onClick={handleNext}
+          className={`absolute ${isMobile ? "-right-4" : "-right-10"} top-1/2 -translate-y-1/2 cursor-pointer z-10`}
+        >
+          <img
+            src={navRight}
+            alt="nav right"
+            className={isMobile ? "w-8 h-8" : ""}
+          />
+        </button>
+      </div>
+      <p className="text-center mt-6 text-sm font-suisse text-neutral-400 transition-all duration-300">
+        {galleryImages[activeImageIdx].name}
+      </p>
+    </>
   );
 };
