@@ -1,6 +1,5 @@
 import amyP from "@/assets/amy_p.png";
 import arrowRight from "@/assets/arrow_right.svg";
-import cart from "@/assets/cart.svg";
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
@@ -8,6 +7,8 @@ import logo from "@/assets/logo.png";
 import star from "@/assets/star.svg";
 import sunAndMoon from "@/assets/sun_and_moon.svg";
 import waves from "@/assets/waves.svg";
+
+import { CartIcon } from "./icons/CartIcon";
 
 const review = {
   id: 1,
@@ -50,7 +51,7 @@ export const HeroSection = () => {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
-                  <img src={cart} alt="" />
+                  <CartIcon className="text-primary w-5 h-4" />
                 </div>
                 <p className="mt-1">
                   No wasteful extras, like tags or plastic packaging.
@@ -74,7 +75,7 @@ export const HeroSection = () => {
               </button>
             </div>
             <section className="absolute -bottom-53 z-10">
-              <div className="bg-background-white py-3 px-5 rounded-xl border border-[#EDEDED] shadow-sm flex flex-col items-center max-w-[416px] w-full gap-2">
+              <div className="bg-background-white py-3 px-5 rounded-xl border border-border-light shadow-sm flex flex-col items-center max-w-[416px] w-full gap-2">
                 <div className="flex items-center w-full justify-between">
                   <div className="flex items-center gap-4 mt-2">
                     <img

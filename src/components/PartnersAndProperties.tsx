@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import canadianLiving from "@/assets/canadian_living.png";
-import cart from "@/assets/cart.svg";
 import ecoStylist from "@/assets/eco_stylist.png";
 import galleryMin1 from "@/assets/gallery_miniature_1.png";
 import galleryMin2 from "@/assets/gallery_miniature_2.png";
@@ -16,6 +15,8 @@ import trendhunter from "@/assets/trendhunter.png";
 import waves from "@/assets/waves.svg";
 import whiteRobe from "@/assets/white_robe.jpg";
 
+import { CartIcon } from "./icons/CartIcon";
+
 export const PartnersAndProperties = () => {
   const partners = [
     { name: "Eco Stylist", src: ecoStylist },
@@ -29,22 +30,22 @@ export const PartnersAndProperties = () => {
     {
       title: "Ethically sourced.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: cart,
+      icon: <CartIcon className="text-primary w-[25px] h-[19px]" />,
     },
     {
       title: "Responsibly made.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: leaf,
+      icon: <img src={leaf} alt="" className="w-[23px] h-[23px]" />,
     },
     {
       title: "Unimaginably comfortable.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: sunAndMoon,
+      icon: <img src={sunAndMoon} alt="" className="w-6.5 h-6.5" />,
     },
     {
       title: "Made for living in.",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-      icon: waves,
+      icon: <img src={waves} alt="" className="w-[22px] h-[18px]" />,
     },
   ];
 
@@ -93,7 +94,7 @@ export const PartnersAndProperties = () => {
               {properties.map((prop, i) => (
                 <div key={i} className="flex items-start gap-5">
                   <div className="flex items-center rounded-full bg-background w-[42px] h-[42px] shrink-0 justify-center">
-                    <img src={prop.icon} alt="" className="w-6 h-6" />
+                    {prop.icon}
                   </div>
                   <div className="flex flex-col gap-1.5 pt-1">
                     <h4 className="text-[22px] leading-[24px] tracking-[0.04em] text-primary">

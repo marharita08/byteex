@@ -112,10 +112,10 @@ export const Reviews = () => {
           {reviews.map((review, idx) => (
             <div
               key={`${review.author}-${idx}`}
-              className="flex-1 bg-background-white border border-[#EAEAEA] shadow-md rounded-lg py-8 px-10 flex flex-col gap-3 max-w-[338px] w-full transition-all duration-300"
+              className="flex-1 bg-background-white border border-border-muted shadow-md rounded-lg py-8 px-10 flex flex-col gap-3 max-w-[338px] w-full transition-all duration-300"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#1C2E58] shrink-0" />
+                <div className="w-12 h-12 rounded-full bg-accent-blue shrink-0" />
                 <div className="flex flex-col gap-1">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
