@@ -27,7 +27,7 @@ export const HowToOrder = () => {
   ];
 
   return (
-    <section className="w-full py-24 px-6 max-w-6xl mx-auto flex flex-col items-center">
+    <section className="w-full py-18.5 px-6 max-w-6xl mx-auto flex flex-col items-center">
       <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary mb-16 font-sofia text-center">
         Comfort made easy
       </h2>

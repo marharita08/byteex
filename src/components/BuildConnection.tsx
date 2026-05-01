@@ -5,7 +5,7 @@ import img3 from "@/assets/build_connection_3.png";
 export const BuildConnection = () => {
   return (
     <div className="bg-background-gray">
-      <section className="w-full py-24 px-6 max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-around">
+      <section className="w-full py-28 px-6 max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-around">
         <div className="w-[523px] relative flex items-center justify-center min-h-[600px]">
           <div className="relative w-[382px] h-[570px]">
             <img
