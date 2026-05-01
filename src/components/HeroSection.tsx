@@ -18,7 +18,7 @@ const review = {
 
 export const HeroSection = () => {
   return (
-    <section className="flex flex-col w-full mb-14">
+    <section className="flex flex-col w-full mb-[62px]">
       <div className="bg-background text-neutral-500 font-suisse text-center px-5 py-2.5 text-[11px] font-medium tracking-wide">
         CONSCIOUSLY MADE BUTTER SOFT STAPLES FOR EVERY DAY (OR NIGHT)
         <span className="mx-3 opacity-50 hidden sm:inline">|</span>
@@ -31,15 +31,15 @@ export const HeroSection = () => {
 
       <div className="max-w-7xl mx-auto px-6 pt-8">
         <img src={logo} alt="byteex" />
-        <div className="flex flex-col lg:flex-row items-start w-full gap-12 mt-16 pl-2">
-          <div className="flex flex-col gap-8 text-center lg:text-left max-w-[480px] relative">
+        <div className="flex flex-col lg:flex-row items-start w-full gap-12 mt-[62px] pl-2">
+          <div className="flex flex-col gap-6 text-center lg:text-left max-w-[480px] relative">
             <div className="flex flex-col gap-4">
-              <h1 className="text-4xl leading-tight tracking-[0.04em] text-primary">
+              <h1 className="text-[38px] leading-[45px] tracking-[0.04em] text-primary">
                 Don’t apologize for being comfortable.
               </h1>
             </div>
 
-            <div className="flex flex-col gap-3 text-base leading-relaxed text-neutral-400 max-w-lg mx-auto lg:mx-0 items-center lg:items-start">
+            <div className="flex flex-col gap-5 text-[15px] leading-[23px] tracking-[0.03em] text-neutral-400 max-w-lg mx-auto lg:mx-0 items-center lg:items-start">
               <div className="flex items-start gap-3">
                 <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
                   <img src={sunAndMoon} alt="" />
@@ -67,7 +67,7 @@ export const HeroSection = () => {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div>
               <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-[356px] h-[56px]">
                 <span>Customize Your Outfit</span>
                 <img src={arrowRight} alt="" />

@@ -71,10 +71,10 @@ export const PartnersAndProperties = () => {
   };
 
   return (
-    <div className="w-full pb-24 relative pt-20">
+    <div className="w-full pb-13.5 relative pt-21">
       <div className="absolute top-0 left-0 w-full bg-linear-to-b from-background via-background/18 to-background/0 h-[530px] z-0" />
       <div className="relative z-10">
-        <section className="max-w-[1253px] mx-auto px-6 mb-30 flex flex-col items-center">
+        <section className="max-w-[1253px] mx-auto px-6 mb-29 flex flex-col items-center">
           <h3 className="text-[20px] leading-[23px] tracking-[0.03em] text-neutral-100 mb-10">
             as seen in
           </h3>
