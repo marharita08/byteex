@@ -1,32 +1,34 @@
-import cloud from "@/assets/cloud.svg";
-import drop from "@/assets/drop.svg";
-import energy from "@/assets/energy.svg";
+import type { SectionInfoBanner } from "@/types/types";
 import { cn } from "@/utils/cn";
 
-interface StatItem {
-  value: string;
-  label: string;
-  icon: string;
+interface Props {
+  data: SectionInfoBanner;
 }
 
-const stats: StatItem[] = [
-  { value: "3,927 kg", label: "of CO2 saved", icon: cloud },
-  { value: "2,546,167 days", label: "of drinking water saved", icon: drop },
-  { value: "7,321 kWh", label: "of energy saved", icon: energy },
-];
+export const InfoBanner = ({ data }: Props) => {
+  const { title, stats } = data.fields;
 
-export const InfoBanner = () => {
+  const statsList =
+    stats?.map((entry) => ({
+      id: entry.sys.id,
+      value: entry.fields.value,
+      label: entry.fields.label,
+      icon: entry.fields.icon
+        ? "https:" + entry.fields.icon.fields.file.url
+        : null,
+    })) ?? [];
+
   return (
     <section className="w-full bg-background-gray">
       <div className="max-w-7xl mx-auto px-6 pt-12 pb-14 md:pt-[39px] md:pb-8 flex flex-col items-center gap-6 md:gap-4.5">
         <h2 className="text-[20px] md:text-[25px] leading-[30px] md:leading-[35px] tracking-[0.04em] text-primary font-sofia font-normal text-center capitalize md:normal-case">
-          Our total green impact
+          {title}
         </h2>
 
         <div className="flex flex-col md:flex-row items-center justify-center w-full">
-          {stats.map((stat, idx) => (
+          {statsList.map((stat, idx) => (
             <div
-              key={idx}
+              key={stat.id}
               className={cn(
                 "flex flex-col md:flex-row items-center w-full md:w-auto",
                 idx === 2 && "hidden md:flex",
@@ -37,7 +39,7 @@ export const InfoBanner = () => {
               )}
               <div className="flex flex-col items-center gap-2 text-center">
                 <div className="w-[42px] h-[42px] bg-surface-gray rounded-full flex items-center justify-center">
-                  <img src={stat.icon} alt="" />
+                  {stat.icon && <img src={stat.icon} alt="" />}
                 </div>
                 <span className="text-[20px] md:text-[22px] leading-[24px] md:leading-[20px] tracking-[0.02em] font-sofia font-semibold text-primary">
                   {stat.value}

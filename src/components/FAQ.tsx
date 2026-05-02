@@ -1,57 +1,41 @@
 import { useState } from "react";
 
-import faq1 from "@/assets/faq_1.png";
-import faq2 from "@/assets/faq_2.png";
-import faq3 from "@/assets/faq_3.png";
+import type { SectionFaq } from "@/types/types";
 
 import { CtaWithReviews } from "./common/CtaWithReviews";
 
-export const FAQ = () => {
+interface Props {
+  data: SectionFaq;
+}
+
+export const FAQ = ({ data }: Props) => {
+  const { title, faqItemsList, galleryImages } = data.fields;
+
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
-  const faqItems = [
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et felis finibus consequat.",
-    },
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "lorem ipsum dolor sit amet",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
+  const faqItems =
+    faqItemsList?.map((entry) => ({
+      id: entry.sys.id,
+      question: entry.fields.question,
+      answer: entry.fields.answer,
+    })) ?? [];
+
+  const images =
+    galleryImages?.map((asset) => "https:" + asset.fields.file.url) ?? [];
 
   return (
     <section className="w-full pb-10.5 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between">
       <div className="w-full lg:w-[631px] flex flex-col items-center lg:items-start">
         <h2 className="lowercase md:normal-case w-[318px] lg:w-full text-center md:text-left text-[26px] md:text-[32px] leading-[30px] md:leading-[40px] tracking-[0.04em] text-primary font-sofia font-normal mb-10">
-          Frequently asked questions.
+          {title}
         </h2>
 
         <div className="flex flex-col">
           {faqItems.map((item, idx) => (
-            <div key={idx} className="border-t border-border-muted">
+            <div
+              key={`${item.id}-${idx}`}
+              className="border-t border-border-muted"
+            >
               <button
                 onClick={() =>
                   setExpandedIndex(expandedIndex === idx ? null : idx)
@@ -79,31 +63,36 @@ export const FAQ = () => {
         </div>
       </div>
 
-      <div className="hidden lg:block w-full lg:w-[430px] h-[645px] relative shrink-0">
-        <div className="relative w-full h-full">
-          <div className="absolute left-[30px] top-[67px] w-[149px] h-[187px] z-0 bg-linear-to-b from-background to-background/31" />
+      {images.length > 0 && (
+        <div className="hidden lg:block w-full lg:w-[430px] h-[645px] relative shrink-0">
+          <div className="relative w-full h-full">
+            <div className="absolute left-[30px] top-[67px] w-[149px] h-[187px] z-0 bg-linear-to-b from-background to-background/31" />
+            <div className="absolute left-[238px] top-[330px] w-[134px] h-[189px] z-0 bg-linear-to-b from-background to-background/31" />
 
-          <div className="absolute left-[238px] top-[330px] w-[134px] h-[189px] z-0 bg-linear-to-b from-background to-background/31" />
-
-          <img
-            src={faq2}
-            alt=""
-            className="absolute left-[80px] top-[129px] w-[227px] h-[355px] object-cover z-20"
-          />
-
-          <img
-            src={faq1}
-            alt=""
-            className="absolute left-[221px] top-px w-[167px] h-[253px] object-cover z-10"
-          />
-
-          <img
-            src={faq3}
-            alt=""
-            className="absolute left-0 top-[440px] w-[216px] h-[159px] object-cover z-10"
-          />
+            {images[1] && (
+              <img
+                src={images[1]}
+                alt=""
+                className="absolute left-[80px] top-[129px] w-[227px] h-[355px] object-cover z-20"
+              />
+            )}
+            {images[0] && (
+              <img
+                src={images[0]}
+                alt=""
+                className="absolute left-[221px] top-px w-[167px] h-[253px] object-cover z-10"
+              />
+            )}
+            {images[2] && (
+              <img
+                src={images[2]}
+                alt=""
+                className="absolute left-0 top-[440px] w-[216px] h-[159px] object-cover z-10"
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       <CtaWithReviews
         className="mt-10 md:hidden"

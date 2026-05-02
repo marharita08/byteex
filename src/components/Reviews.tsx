@@ -3,37 +3,35 @@ import { useState } from "react";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
 import star from "@/assets/star.svg";
+import type { SectionReviews } from "@/types/types";
 import { cn } from "@/utils/cn";
 
 import { CtaWithReviews } from "./common/CtaWithReviews";
 
-const modules = import.meta.glob<{ default: string }>(
-  "@/assets/reviews_*.png",
-  { eager: true },
-);
-const reviewImages = Object.keys(modules)
-  .sort((a, b) => {
-    const numA = parseInt(a.match(/reviews_(\d+)/)?.[1] || "0", 10);
-    const numB = parseInt(b.match(/reviews_(\d+)/)?.[1] || "0", 10);
-    return numA - numB;
-  })
-  .map((key) => modules[key].default);
+interface Props {
+  data: SectionReviews;
+}
 
-export const Reviews = () => {
-  const initialReviews = [
-    {
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi.",
-      author: "Jane, S.",
-    },
-    {
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales.",
-      author: "Jane, S.",
-    },
-    {
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed sollicitudin dolor, non sodales justo. Aenean eget aliquet mi.",
-      author: "Jane, S.",
-    },
-  ];
+export const Reviews = ({ data }: Props) => {
+  const {
+    title,
+    description,
+    marqueeImagesRow1,
+    marqueeImagesRow2,
+    reviewsList,
+  } = data.fields;
+
+  const initialReviews =
+    reviewsList?.map((entry) => ({
+      id: entry.sys.id,
+      text: entry.fields.text,
+      author: entry.fields.author,
+    })) ?? [];
+
+  const row1 =
+    marqueeImagesRow1?.map((asset) => "https:" + asset.fields.file.url) ?? [];
+  const row2 =
+    marqueeImagesRow2?.map((asset) => "https:" + asset.fields.file.url) ?? [];
 
   const [reviews, setReviews] = useState(initialReviews);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -60,20 +58,17 @@ export const Reviews = () => {
     });
   };
 
-  const row1 = reviewImages.slice(0, 11);
-  const row2 = reviewImages.slice(11);
-
   return (
     <section className="w-full pb-16 md:pb-26 flex flex-col items-center overflow-hidden">
       <div className="max-w-[700px] mx-auto px-6 text-center mb-10 md:mb-14 flex flex-col gap-5 md:gap-6">
         <h2 className="text-[26px] md:text-[32px] leading-[34px] md:leading-[40px] tracking-[0.04em] text-primary font-sofia">
-          What are our fans saying?
+          {title}
         </h2>
-        <p className="text-[14px] md:text-[15px] leading-[22px] md:leading-[23px] tracking-[0.03em] text-neutral-400 max-w-[600px] mx-auto">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-          lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et
-          felis finibus consequat. Fusce non nibh luctus.
-        </p>
+        {description && (
+          <p className="text-[14px] md:text-[15px] leading-[22px] md:leading-[23px] tracking-[0.03em] text-neutral-400 max-w-[600px] mx-auto">
+            {description}
+          </p>
+        )}
       </div>
 
       <div className="w-full mb-10 md:mb-19 flex flex-col gap-1.5 overflow-hidden relative">
@@ -119,7 +114,7 @@ export const Reviews = () => {
         <div className="flex items-start justify-center gap-10">
           {reviews.map((review, idx) => (
             <div
-              key={`${review.author}-${idx}`}
+              key={`${review.id}-${idx}`}
               className="flex-1 bg-background-white border border-border-muted shadow-md rounded-lg py-8 px-10 flex flex-col gap-3 max-w-[338px] w-full transition-all duration-300"
             >
               <div className="flex items-center gap-4">
@@ -168,12 +163,12 @@ export const Reviews = () => {
                   ))}
                 </div>
                 <span className="text-[15px] leading-[23px] tracking-[0.03em] text-neutral-300">
-                  {reviews[0].author}
+                  {reviews[0]?.author}
                 </span>
               </div>
             </div>
             <p className="text-[12px] leading-[23px] tracking-[0.04em] text-neutral-400 font-suisse">
-              {reviews[0].text}
+              {reviews[0]?.text}
             </p>
           </div>
 
@@ -182,7 +177,6 @@ export const Reviews = () => {
           </button>
         </div>
 
-        {/* Pagination Dots */}
         <div className="flex gap-2">
           {initialReviews.map((_, i) => (
             <div

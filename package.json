@@ -8,11 +8,16 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "generate-types": "contentful-typescript-codegen --space-id u74ja5d4r6xo --environment master --access-token NY0MplTEr5IETDDUtDglBoDKnUqDwp9GMNmwZxp4Vws -o src/types/types.ts"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.2.1",
+    "@tanstack/react-query": "^5.100.8",
     "clsx": "^2.1.1",
+    "fs": "^0.0.1-security",
     "js-yaml": "^4.1.1",
+    "path": "^0.12.7",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tailwind-merge": "^3.5.0"
@@ -25,6 +30,9 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "cf-content-types-generator": "^2.16.1",
+    "contentful-management": "^12.3.2",
+    "contentful-typescript-codegen": "^3.4.0",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
