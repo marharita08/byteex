@@ -7,6 +7,12 @@ The content is managed through a headless CMS (Contentful), which provides dynam
 
 ---
 
+## Notes
+
+> **Fonts:** The original design uses **Suisse Int'l** and **Sofia Pro**, which are commercial fonts. As free alternatives, this project uses **Inter** (in place of Suisse Int'l) and **Nunito** (in place of Sofia Pro).
+
+---
+
 ## Tech Stack
 
 - **React** 
