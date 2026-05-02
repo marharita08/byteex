@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import arrowRight from "@/assets/arrow_right.svg";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
 import star from "@/assets/star.svg";
 import { cn } from "@/utils/cn";
+
+import { CtaWithReviews } from "./common/CtaWithReviews";
 
 const modules = import.meta.glob<{ default: string }>(
   "@/assets/reviews_*.png",
@@ -195,22 +196,10 @@ export const Reviews = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-4 px-6 w-full">
-        <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-full max-w-[381px] md:w-[356px] h-[56px] transition-opacity hover:opacity-90">
-          <span>Customize Your Outfit</span>
-          <img src={arrowRight} alt="arrow right" className="w-6 h-6" />
-        </button>
-        <div className="flex items-center gap-2 mt-2">
-          <div className="flex gap-px">
-            {[...Array(5)].map((_, i) => (
-              <img key={i} src={star} alt="star" className="w-3 h-3" />
-            ))}
-          </div>
-          <span className="text-[12px] leading-[20px] font-suisse text-neutral-200">
-            Over 500+ 5 Star Reviews Online
-          </span>
-        </div>
-      </div>
+      <CtaWithReviews
+        className="mt-0"
+        buttonClassName="max-w-[381px] md:w-[356px]"
+      />
     </section>
   );
 };

@@ -1,5 +1,4 @@
 import amyP from "@/assets/amy_p.png";
-import arrowRight from "@/assets/arrow_right.svg";
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
@@ -9,6 +8,7 @@ import sunAndMoon from "@/assets/sun_and_moon.svg";
 import waves from "@/assets/waves.svg";
 import { cn } from "@/utils/cn";
 
+import { Button } from "./common/Button";
 import { CartIcon } from "./icons/CartIcon";
 
 const review = {
@@ -87,10 +87,7 @@ export const HeroSection = () => {
             </div>
 
             <div className="order-4 w-full flex justify-center xl:justify-start mb-6">
-              <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-full max-w-[381px] xl:w-[356px] h-[56px]">
-                <span>Customize Your Outfit</span>
-                <img src={arrowRight} alt="" />
-              </button>
+              <Button className="max-w-[381px] xl:w-[356px]" />
             </div>
 
             <div className="order-5 absolute -bottom-33 md:-bottom-44 xl:-bottom-44 xl:left-0 z-10 w-full max-w-[388px] xl:w-[416px] xl:max-w-none mt-6 xl:mt-0 mx-auto xl:mx-0">

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import arrowRight from "@/assets/arrow_right.svg";
 import canadianLiving from "@/assets/canadian_living.png";
 import ecoStylist from "@/assets/eco_stylist.png";
 import galleryMin1 from "@/assets/gallery_miniature_1.png";
@@ -10,7 +9,6 @@ import jillianHarris from "@/assets/jillian_harris.png";
 import leaf from "@/assets/leaf.svg";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
-import star from "@/assets/star.svg";
 import sunAndMoon from "@/assets/sun_and_moon.svg";
 import theEcoHub from "@/assets/the_eco_hub.png";
 import trendhunter from "@/assets/trendhunter.png";
@@ -18,6 +16,7 @@ import waves from "@/assets/waves.svg";
 import whiteRobe from "@/assets/white_robe.jpg";
 import { cn } from "@/utils/cn";
 
+import { CtaWithReviews } from "./common/CtaWithReviews";
 import { CartIcon } from "./icons/CartIcon";
 
 interface GalleryImage {
@@ -190,22 +189,10 @@ export const PartnersAndProperties = () => {
             </div>
 
             {/* Mobile CTA Button and Stars */}
-            <div className="flex md:hidden mt-12 w-full flex-col items-center gap-4 order-4">
-              <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-full max-w-[381px] h-[56px] transition-opacity hover:opacity-90">
-                <span>Customize Your Outfit</span>
-                <img src={arrowRight} alt="arrow right" className="w-6 h-6" />
-              </button>
-              <div className="flex items-center gap-2">
-                <div className="flex gap-px">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <img key={i} src={star} alt="star" className="w-3 h-3" />
-                  ))}
-                </div>
-                <span className="text-[12px] leading-[20px] font-suisse text-neutral-200">
-                  Over 500+ 5 Star Reviews Online
-                </span>
-              </div>
-            </div>
+            <CtaWithReviews
+              className="mt-12 md:hidden"
+              buttonClassName="max-w-[381px]"
+            />
           </div>
 
           {/* Desktop Gallery */}
