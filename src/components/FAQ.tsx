@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { resolveAssets, resolveEntries } from "@/lib/contentful.utils";
 import type { SectionFaq } from "@/types/types";
 
 import { CtaWithReviews } from "./common/CtaWithReviews";
@@ -14,14 +15,13 @@ export const FAQ = ({ data }: Props) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   const faqItems =
-    faqItemsList?.map((entry) => ({
+    resolveEntries(faqItemsList).map((entry) => ({
       id: entry.sys.id,
       question: entry.fields.question,
       answer: entry.fields.answer,
     })) ?? [];
 
-  const images =
-    galleryImages?.map((asset) => "https:" + asset.fields.file.url) ?? [];
+  const images = resolveAssets(galleryImages);
 
   return (
     <section className="w-full pb-10.5 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between">

@@ -1,3 +1,4 @@
+import { assetUrl, resolveEntries } from "@/lib/contentful.utils";
 import type { SectionInfoBanner } from "@/types/types";
 import { cn } from "@/utils/cn";
 
@@ -8,15 +9,12 @@ interface Props {
 export const InfoBanner = ({ data }: Props) => {
   const { title, stats } = data.fields;
 
-  const statsList =
-    stats?.map((entry) => ({
-      id: entry.sys.id,
-      value: entry.fields.value,
-      label: entry.fields.label,
-      icon: entry.fields.icon
-        ? "https:" + entry.fields.icon.fields.file.url
-        : null,
-    })) ?? [];
+  const statsList = resolveEntries(stats).map((entry) => ({
+    id: entry.sys.id,
+    value: entry.fields.value,
+    label: entry.fields.label,
+    icon: assetUrl(entry.fields.icon),
+  }));
 
   return (
     <section className="w-full bg-background-gray">

@@ -1,3 +1,4 @@
+import { assetTitle, assetUrl } from "@/lib/contentful.utils";
 import type { SectionBuildConnection } from "@/types/types";
 
 interface Props {
@@ -18,21 +19,21 @@ export const BuildConnection = ({ data }: Props) => {
         <div className="w-full md:py-25 xl:py-0 max-w-[320px] md:w-[523px] relative flex items-center justify-center min-h-[450px] md:min-h-[600px] order-2">
           <div className="relative w-[265px] h-[395px] md:w-[382px] md:h-[570px]">
             <img
-              src={"https:" + mainImage.fields.file.url}
-              alt={mainImage.fields.title}
+              src={assetUrl(mainImage)}
+              alt={assetTitle(mainImage)}
               className="w-full h-full object-cover"
             />
             {topLeftImage && (
               <img
-                src={"https:" + topLeftImage.fields.file.url}
-                alt={topLeftImage.fields.title}
+                src={assetUrl(topLeftImage)}
+                alt={assetTitle(topLeftImage)}
                 className="absolute left-[-40px] top-[-25px] md:left-[-80px] md:top-[-50px] w-[115px] h-[121px] md:w-[166px] md:h-[175px] object-cover"
               />
             )}
             {bottomRightImage && (
               <img
-                src={"https:" + bottomRightImage.fields.file.url}
-                alt={bottomRightImage.fields.title}
+                src={assetUrl(bottomRightImage)}
+                alt={assetTitle(bottomRightImage)}
                 className="absolute right-[-30px] bottom-[-40px] md:right-[-65px] md:bottom-[-50px] w-[90px] h-[121px] md:w-[129px] md:h-[175px] object-cover"
               />
             )}

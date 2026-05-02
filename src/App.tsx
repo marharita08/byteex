@@ -76,7 +76,13 @@ function App() {
   if (isPending) return <Spinner />;
   if (isError || !page) return <ErrorMessage />;
 
-  return <main>{page.fields.sectionsVillage?.map(renderSection)}</main>;
+  return (
+    <main>
+      {page.fields.sectionsVillage
+        ?.filter((s): s is PageSection => s !== undefined)
+        .map(renderSection)}
+    </main>
+  );
 }
 
 export default App;

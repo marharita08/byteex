@@ -1,5 +1,10 @@
 import logo from "@/assets/logo.png";
 import star from "@/assets/star.svg";
+import {
+  assetUrl,
+  resolveAssets,
+  resolveEntries,
+} from "@/lib/contentful.utils";
 import type { SectionHero } from "@/types/types";
 import { cn } from "@/utils/cn";
 
@@ -42,8 +47,7 @@ interface Props {
 export const HeroSection = ({ data }: Props) => {
   const { title, heroGallery, review, features } = data.fields;
 
-  const galleryUrls =
-    heroGallery?.map((asset) => "https:" + asset.fields.file.url) ?? [];
+  const galleryUrls = resolveAssets(heroGallery);
 
   return (
     <section className="flex flex-col w-full mb-25 md:mb-[62px]">
@@ -70,7 +74,7 @@ export const HeroSection = ({ data }: Props) => {
             />
 
             <div className="self-center xl:self-start order-3 flex flex-col gap-5 text-[13px] md:text-[15px] leading-[18px] md:leading-[23px] tracking-[0.03em] text-neutral-400 items-start mb-[29px] md:mb-[25px] max-w-[330px] md:max-w-[380px] xl:max-w-none">
-              {features?.map((feature) => (
+              {resolveEntries(features).map((feature) => (
                 <div
                   key={feature.sys.id}
                   className="flex items-start gap-3 text-left"
@@ -78,7 +82,7 @@ export const HeroSection = ({ data }: Props) => {
                   <div className="flex items-center rounded-full bg-background w-[31px] h-[31px] shrink-0 justify-center">
                     {feature.fields.icon && (
                       <img
-                        src={"https:" + feature.fields.icon.fields.file.url}
+                        src={assetUrl(feature.fields.icon)}
                         alt=""
                         className="w-4 h-4"
                       />
@@ -100,7 +104,7 @@ export const HeroSection = ({ data }: Props) => {
                     <div className="flex w-full items-center gap-4">
                       {review.fields.avatar && (
                         <img
-                          src={"https:" + review.fields.avatar.fields.file.url}
+                          src={assetUrl(review.fields.avatar)}
                           alt={review.fields.author}
                           className="w-10 h-10"
                         />

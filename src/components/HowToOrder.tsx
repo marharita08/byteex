@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
+import { assetUrl, resolveEntries } from "@/lib/contentful.utils";
 import type { SectionHowToOrder } from "@/types/types";
 import { cn } from "@/utils/cn";
 
@@ -18,15 +19,12 @@ export const HowToOrder = ({ data }: Props) => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const stepsList =
-    steps?.map((entry) => ({
-      id: entry.sys.id,
-      title: entry.fields.text,
-      desc: entry.fields.description,
-      icon: entry.fields.icon
-        ? "https:" + entry.fields.icon.fields.file.url
-        : null,
-    })) ?? [];
+  const stepsList = resolveEntries(steps).map((entry) => ({
+    id: entry.sys.id,
+    title: entry.fields.text,
+    desc: entry.fields.description,
+    icon: assetUrl(entry.fields.icon),
+  }));
 
   const nextStep = () => setActiveStep((prev) => (prev + 1) % stepsList.length);
   const prevStep = () =>

@@ -4,6 +4,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
+import { assetTitle, assetUrl, resolveEntries } from "@/lib/contentful.utils";
 import type { SectionPartnersAndProperties } from "@/types/types";
 import { cn } from "@/utils/cn";
 
@@ -115,26 +116,22 @@ export const PartnersAndProperties = ({ data }: Props) => {
 
   const partners =
     partnersLabels?.map((asset) => ({
-      name: asset.fields.title ?? "",
-      src: "https:" + asset.fields.file.url,
+      name: assetTitle(asset),
+      src: assetUrl(asset),
     })) ?? [];
 
-  const propertiesList =
-    properties?.map((entry) => ({
-      id: entry.sys.id,
-      title: entry.fields.text,
-      desc: entry.fields.description,
-      icon: entry.fields.icon
-        ? "https:" + entry.fields.icon.fields.file.url
-        : null,
-    })) ?? [];
+  const propertiesList = resolveEntries(properties).map((entry) => ({
+    id: entry.sys.id,
+    title: entry.fields.text,
+    desc: entry.fields.description,
+    icon: assetUrl(entry.fields.icon),
+  }));
 
-  const galleryImages =
-    galleryItems?.map((entry) => ({
-      main: "https:" + entry.fields.mainImage.fields.file.url,
-      thumb: "https:" + entry.fields.thumbImage.fields.file.url,
-      name: entry.fields.name,
-    })) ?? [];
+  const galleryImages = resolveEntries(galleryItems).map((entry) => ({
+    main: assetUrl(entry.fields.mainImage),
+    thumb: assetUrl(entry.fields.thumbImage),
+    name: entry.fields.name,
+  }));
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [logoPageIdx, setLogoPageIdx] = useState(0);

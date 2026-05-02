@@ -3,6 +3,7 @@ import { useState } from "react";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
 import star from "@/assets/star.svg";
+import { resolveAssets, resolveEntries } from "@/lib/contentful.utils";
 import type { SectionReviews } from "@/types/types";
 import { cn } from "@/utils/cn";
 
@@ -21,17 +22,14 @@ export const Reviews = ({ data }: Props) => {
     reviewsList,
   } = data.fields;
 
-  const initialReviews =
-    reviewsList?.map((entry) => ({
-      id: entry.sys.id,
-      text: entry.fields.text,
-      author: entry.fields.author,
-    })) ?? [];
+  const initialReviews = resolveEntries(reviewsList).map((entry) => ({
+    id: entry.sys.id,
+    text: entry.fields.text,
+    author: entry.fields.author,
+  }));
 
-  const row1 =
-    marqueeImagesRow1?.map((asset) => "https:" + asset.fields.file.url) ?? [];
-  const row2 =
-    marqueeImagesRow2?.map((asset) => "https:" + asset.fields.file.url) ?? [];
+  const row1 = resolveAssets(marqueeImagesRow1);
+  const row2 = resolveAssets(marqueeImagesRow2);
 
   const [reviews, setReviews] = useState(initialReviews);
   const [activeIdx, setActiveIdx] = useState(0);

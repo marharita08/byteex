@@ -178,15 +178,9 @@ export type SectionFinalCta = Resolved<SectionFinalCtaSkeleton>;
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export type PageSection =
-  | SectionHero
-  | SectionInfoBanner
-  | SectionPartnersAndProperties
-  | SectionHowToOrder
-  | SectionBuildConnection
-  | SectionReviews
-  | SectionFaq
-  | SectionFinalCta;
+export type PageSection = NonNullable<
+  NonNullable<Page["fields"]["sectionsVillage"]>[number]
+>;
 
 export type PageSkeleton = EntrySkeletonType<
   {

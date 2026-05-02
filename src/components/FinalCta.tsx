@@ -1,5 +1,10 @@
 import cards from "@/assets/cards.png";
 import clock from "@/assets/clock.svg";
+import {
+  assetUrl,
+  resolveAssets,
+  resolveEntries,
+} from "@/lib/contentful.utils";
 import type { SectionFinalCta } from "@/types/types";
 
 import { Button } from "./common/Button";
@@ -18,16 +23,13 @@ export const FinalCta = ({ data }: Props) => {
     footerFeatures,
   } = data.fields;
 
-  const images =
-    galleryImages?.map((asset) => "https:" + asset.fields.file.url) ?? [];
+  const images = resolveAssets(galleryImages);
 
   const features =
-    footerFeatures?.map((entry) => ({
+    resolveEntries(footerFeatures).map((entry) => ({
       id: entry.sys.id,
       text: entry.fields.text,
-      icon: entry.fields.icon
-        ? "https:" + entry.fields.icon.fields.file.url
-        : null,
+      icon: assetUrl(entry.fields.icon),
     })) ?? [];
 
   return (
