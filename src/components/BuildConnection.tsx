@@ -5,9 +5,13 @@ import img3 from "@/assets/build_connection_3.png";
 export const BuildConnection = () => {
   return (
     <div className="bg-background-gray">
-      <section className="w-full py-28 px-6 max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-around">
-        <div className="w-[523px] relative flex items-center justify-center min-h-[600px]">
-          <div className="relative w-[382px] h-[570px]">
+      <section className="w-full py-20 md:py-28 px-6 max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-around gap-12 md:gap-0">
+        <h2 className="md:hidden order-1 text-[26px] leading-[34px] tracking-[0.04em] text-primary font-sofia text-center">
+          Be your best self.
+        </h2>
+
+        <div className="w-full max-w-[320px] md:w-[523px] relative flex items-center justify-center min-h-[450px] md:min-h-[600px] order-2">
+          <div className="relative w-[265px] h-[395px] md:w-[382px] md:h-[570px]">
             <img
               src={img2}
               alt="Founder"
@@ -16,22 +20,22 @@ export const BuildConnection = () => {
             <img
               src={img1}
               alt="Detail"
-              className="absolute left-[-80px] top-[-50px] w-[166px] h-[175px] object-cover"
+              className="absolute left-[-40px] top-[-25px] md:left-[-80px] md:top-[-50px] w-[115px] h-[121px] md:w-[166px] md:h-[175px] object-cover"
             />
             <img
               src={img3}
               alt="Detail"
-              className="absolute right-[-65px] bottom-[-50px] w-[129px] h-[175px] object-cover"
+              className="absolute right-[-30px] bottom-[-40px] md:right-[-65px] md:bottom-[-50px] w-[90px] h-[121px] md:w-[129px] md:h-[175px] object-cover"
             />
           </div>
         </div>
 
-        <div className="w-[619px] flex flex-col gap-8">
-          <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
+        <div className="w-full max-w-full md:w-[619px] flex flex-col gap-8 items-center md:items-start order-3">
+          <h2 className="hidden md:block text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
             Be your best self.
           </h2>
 
-          <div className="text-neutral-300 text-[15px] leading-[23px] tracking-[0.03em] flex flex-col gap-5">
+          <div className="text-neutral-300 text-[14px] md:text-[15px] leading-[22px] md:leading-[23px] tracking-[0.03em] flex flex-col gap-5 text-left max-w-[335px] md:max-w-full">
             <p>Hi! My name’s [Insert Name], and I founded [Insert] in ____.</p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
@@ -60,7 +64,7 @@ export const BuildConnection = () => {
             </p>
             <p>Cras mattis varius mollis.</p>
           </div>
-          <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-[356px] h-[56px]">
+          <button className="hidden md:flex bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer items-center justify-center gap-6 w-[356px] h-[56px] order-4">
             <span>Customize Your Outfit</span>
           </button>
         </div>
