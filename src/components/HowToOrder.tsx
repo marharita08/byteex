@@ -41,12 +41,12 @@ export const HowToOrder = () => {
       </h2>
 
       {/* Desktop View - All cards visible */}
-      <div className="hidden md:flex w-full flex-row gap-8 justify-center mb-16">
+      <div className="hidden md:flex w-full flex-row gap-8 justify-center flex-wrap mb-16">
         {steps.map((step, idx) => (
           <div
             key={idx}
             className={cn(
-              "flex-1 flex flex-col items-center border p-4 border-border-light rounded-lg text-center w-[346px] h-[320px] justify-center",
+              "shrink-0 flex flex-col items-center border p-4 border-border-light rounded-lg text-center w-[346px] h-[320px] justify-center",
               idx % 2 === 0 ? "bg-background-gray" : "bg-background",
             )}
           >

@@ -88,10 +88,10 @@ export const PartnersAndProperties = () => {
   };
 
   return (
-    <div className="w-full pb-13.5 relative pt-12 md:pt-21 overflow-hidden">
+    <div className="w-full pb-11 md:pb-13.5 relative pt-12 md:pt-21 overflow-hidden">
       <div className="absolute top-0 left-0 w-full bg-linear-to-b from-background via-background/18 to-background/0 h-[530px] z-0" />
 
-      <div className="absolute bottom-0 left-0 w-full h-[600px] bg-linear-to-t from-background via-background/18 to-background/0 z-0 md:hidden" />
+      <div className="absolute -bottom-39 left-0 w-full h-[600px] bg-linear-to-t from-background via-background/18 to-background/0 z-0 md:hidden" />
 
       <div className="relative z-10">
         <section className="max-w-[1253px] mx-auto px-6 mb-16 md:mb-29 flex flex-col items-center">
@@ -123,7 +123,7 @@ export const PartnersAndProperties = () => {
                   onClick={() => setLogoPageIdx(i)}
                   className={cn(
                     "w-2 h-2 rounded-full cursor-pointer transition-colors duration-300",
-                    logoPageIdx === i ? "bg-primary" : "bg-primary/20",
+                    logoPageIdx === i ? "bg-black" : "bg-divider",
                   )}
                 />
               ))}
@@ -144,13 +144,13 @@ export const PartnersAndProperties = () => {
         </section>
 
         <section className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:gap-0">
-          <div className="w-full md:w-[570px] flex flex-col items-center md:items-start order-1">
+          <div className="w-full xl:w-[570px] flex flex-col items-center xl:items-start order-1">
             <h2 className="text-[26px] md:text-[32px] md:pl-8 leading-[34px] md:leading-[40px] tracking-[0.04em] text-primary mb-10 md:mb-20 font-sofia text-center md:text-left">
               Loungewear you can be proud of.
             </h2>
 
             {/* Mobile Gallery */}
-            <div className="flex md:hidden flex-col items-center mb-10 w-full order-2">
+            <div className="flex xl:hidden flex-col items-center mb-10 w-full order-2">
               <GalleryContent
                 galleryImages={galleryImages}
                 activeImageIdx={activeImageIdx}
@@ -161,7 +161,7 @@ export const PartnersAndProperties = () => {
               />
             </div>
 
-            <div className="flex md:pl-6 flex-col order-3 w-full">
+            <div className="md:w-[570px] xl:w-full flex md:pl-6 flex-col order-3 w-full">
               {properties.map((prop, i) => (
                 <div
                   key={i}
@@ -187,16 +187,10 @@ export const PartnersAndProperties = () => {
                 </div>
               ))}
             </div>
-
-            {/* Mobile CTA Button and Stars */}
-            <CtaWithReviews
-              className="mt-12 md:hidden"
-              buttonClassName="max-w-[381px]"
-            />
           </div>
 
           {/* Desktop Gallery */}
-          <div className="hidden md:flex flex-col items-center order-2">
+          <div className="hidden xl:flex flex-col items-center order-2">
             <GalleryContent
               galleryImages={galleryImages}
               activeImageIdx={activeImageIdx}
@@ -207,6 +201,11 @@ export const PartnersAndProperties = () => {
             />
           </div>
         </section>
+
+        <CtaWithReviews
+          className="mt-2 md:hidden px-6"
+          buttonClassName="max-w-[381px] mx-auto"
+        />
       </div>
     </div>
   );
@@ -230,20 +229,6 @@ const GalleryContent = ({
   return (
     <>
       <div className="relative flex items-center justify-center w-full">
-        <button
-          onClick={handlePrev}
-          className={cn(
-            "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
-            isMobile ? "-left-4" : "-left-10",
-          )}
-        >
-          <img
-            src={navLeft}
-            alt="nav left"
-            className={cn(isMobile && "w-8 h-8")}
-          />
-        </button>
-
         <div
           className={cn(
             "relative shrink-0",
@@ -252,11 +237,40 @@ const GalleryContent = ({
               : "w-[433px] h-[648px]",
           )}
         >
+          <button
+            onClick={handlePrev}
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
+              isMobile ? "-left-6" : "-left-10",
+            )}
+          >
+            <img
+              src={navLeft}
+              alt="nav left"
+              className={cn(isMobile && "w-2")}
+            />
+          </button>
+
           <img
             src={galleryImages[activeImageIdx].main}
             alt={galleryImages[activeImageIdx].name}
             className="transition-opacity duration-300 w-full h-full object-cover object-top"
           />
+
+          <button
+            onClick={handleNext}
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
+              isMobile ? "-right-6" : "-right-10",
+            )}
+          >
+            <img
+              src={navRight}
+              alt="nav right"
+              className={cn(isMobile && "w-2")}
+            />
+          </button>
+
           <div className="flex flex-row gap-2 md:gap-4 absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%] justify-center">
             {galleryImages.map((img, idx) => (
               <button
@@ -272,28 +286,22 @@ const GalleryContent = ({
                 <img
                   src={img.thumb}
                   alt={`Thumbnail ${idx}`}
-                  className={cn(isMobile && "w-8 h-8 object-cover")}
+                  className={cn(
+                    "object-cover transition-transform duration-200",
+                    isMobile ? "w-8 h-8" : "w-16 h-16",
+                  )}
                 />
               </button>
             ))}
           </div>
         </div>
-
-        <button
-          onClick={handleNext}
-          className={cn(
-            "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
-            isMobile ? "-right-4" : "-right-10",
-          )}
-        >
-          <img
-            src={navRight}
-            alt="nav right"
-            className={cn(isMobile && "w-8 h-8")}
-          />
-        </button>
       </div>
-      <p className="text-center mt-6 text-sm font-suisse text-neutral-400 transition-all duration-300">
+      <p
+        className={cn(
+          "text-center mt-6 text-sm font-suisse text-neutral-400 transition-all duration-300",
+          !isMobile && "hidden",
+        )}
+      >
         {galleryImages[activeImageIdx].name}
       </p>
     </>

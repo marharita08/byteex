@@ -5,12 +5,12 @@ import img3 from "@/assets/build_connection_3.png";
 export const BuildConnection = () => {
   return (
     <div className="bg-background-gray">
-      <section className="w-full py-20 md:py-28 px-6 max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-around gap-12 md:gap-0">
-        <h2 className="md:hidden order-1 text-[26px] leading-[34px] tracking-[0.04em] text-primary font-sofia text-center">
+      <section className="w-full py-20 md:py-28 px-6 max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-around gap-12 md:gap-0">
+        <h2 className="xl:hidden order-1 md:text-[32px] md:leading-[40px] text-[26px] leading-[34px] tracking-[0.04em] text-primary font-sofia text-center">
           Be your best self.
         </h2>
 
-        <div className="w-full max-w-[320px] md:w-[523px] relative flex items-center justify-center min-h-[450px] md:min-h-[600px] order-2">
+        <div className="w-full md:py-25 xl:py-0 max-w-[320px] md:w-[523px] relative flex items-center justify-center min-h-[450px] md:min-h-[600px] order-2">
           <div className="relative w-[265px] h-[395px] md:w-[382px] md:h-[570px]">
             <img
               src={img2}
@@ -31,7 +31,7 @@ export const BuildConnection = () => {
         </div>
 
         <div className="w-full max-w-full md:w-[619px] flex flex-col gap-8 items-center md:items-start order-3">
-          <h2 className="hidden md:block text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
+          <h2 className="hidden xl:block text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
             Be your best self.
           </h2>
 

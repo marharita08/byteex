@@ -90,7 +90,7 @@ export const HeroSection = () => {
               <Button className="max-w-[381px] xl:w-[356px]" />
             </div>
 
-            <div className="order-5 absolute -bottom-33 md:-bottom-44 xl:-bottom-44 xl:left-0 z-10 w-full max-w-[388px] xl:w-[416px] xl:max-w-none mt-6 xl:mt-0 mx-auto xl:mx-0">
+            <div className="order-5 absolute left-1/2 -translate-x-1/2 xl:translate-x-0 -bottom-33 xl:-bottom-44 xl:left-0 z-10 w-full max-w-[388px] xl:w-[416px] xl:max-w-none mt-6 xl:mt-0 mx-auto xl:mx-0">
               <div className="bg-background-white py-4 xl:py-3 px-5 rounded-xl border border-border-light shadow-sm flex flex-col items-center gap-3 xl:gap-2">
                 <div className="flex items-center w-full justify-between">
                   <div className="flex w-full items-center gap-4">
@@ -118,7 +118,7 @@ export const HeroSection = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-neutral-400 text-xs font-suisse leading-[20px] xl:leading-[23px] tracking-[0.04em] text-left line-clamp-2 md:line-clamp-none">
+                <p className="text-neutral-400 text-xs font-suisse leading-[20px] md:leading-[23px] tracking-[0.04em] text-left line-clamp-2 xl:line-clamp-none">
                   {review.text}
                 </p>
               </div>
