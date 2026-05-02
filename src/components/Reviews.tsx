@@ -107,7 +107,7 @@ export const Reviews = () => {
       </div>
 
       {/* Desktop Reviews View */}
-      <div className="hidden md:flex max-w-[1306px] mx-auto px-6 w-full justify-center gap-13 mb-16">
+      <div className="hidden lg:flex max-w-[1306px] mx-auto px-6 w-full justify-center gap-13 mb-16">
         <div className="relative top-[100px]">
           <button
             onClick={handlePrev}
@@ -152,7 +152,7 @@ export const Reviews = () => {
       </div>
 
       {/* Mobile Reviews View */}
-      <div className="md:hidden flex flex-col items-center gap-6 mb-10 w-full px-6">
+      <div className="lg:hidden flex flex-col items-center gap-6 mb-10 w-full px-6">
         <div className="flex items-center justify-center w-full gap-5">
           <button onClick={handlePrev} className="cursor-pointer shrink-0">
             <img src={navLeft} alt="prev" className="w-2" />

@@ -1,7 +1,6 @@
 import cloud from "@/assets/cloud.svg";
 import drop from "@/assets/drop.svg";
 import energy from "@/assets/energy.svg";
-
 import { cn } from "@/utils/cn";
 
 interface StatItem {
