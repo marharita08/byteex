@@ -16,6 +16,7 @@ import theEcoHub from "@/assets/the_eco_hub.png";
 import trendhunter from "@/assets/trendhunter.png";
 import waves from "@/assets/waves.svg";
 import whiteRobe from "@/assets/white_robe.jpg";
+import { cn } from "@/utils/cn";
 
 import { CartIcon } from "./icons/CartIcon";
 
@@ -121,7 +122,10 @@ export const PartnersAndProperties = () => {
                 <div
                   key={i}
                   onClick={() => setLogoPageIdx(i)}
-                  className={`w-2 h-2 rounded-full cursor-pointer transition-colors duration-300 ${logoPageIdx === i ? "bg-primary" : "bg-primary/20"}`}
+                  className={cn(
+                    "w-2 h-2 rounded-full cursor-pointer transition-colors duration-300",
+                    logoPageIdx === i ? "bg-primary" : "bg-primary/20",
+                  )}
                 />
               ))}
             </div>
@@ -241,17 +245,25 @@ const GalleryContent = ({
       <div className="relative flex items-center justify-center w-full">
         <button
           onClick={handlePrev}
-          className={`absolute ${isMobile ? "-left-4" : "-left-10"} top-1/2 -translate-y-1/2 cursor-pointer z-10`}
+          className={cn(
+            "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
+            isMobile ? "-left-4" : "-left-10",
+          )}
         >
           <img
             src={navLeft}
             alt="nav left"
-            className={isMobile ? "w-8 h-8" : ""}
+            className={cn(isMobile && "w-8 h-8")}
           />
         </button>
 
         <div
-          className={`${isMobile ? "w-full aspect-[2/3] max-w-[300px]" : "w-[433px] h-[648px]"} relative shrink-0`}
+          className={cn(
+            "relative shrink-0",
+            isMobile
+              ? "w-full aspect-2/3 max-w-[300px]"
+              : "w-[433px] h-[648px]",
+          )}
         >
           <img
             src={galleryImages[activeImageIdx].main}
@@ -263,12 +275,17 @@ const GalleryContent = ({
               <button
                 key={idx}
                 onClick={() => setActiveImageIdx(idx)}
-                className={`transition-all duration-200 cursor-pointer ${activeImageIdx === idx ? "ring-2 ring-white scale-110" : "opacity-70 hover:opacity-100"}`}
+                className={cn(
+                  "transition-all duration-200 cursor-pointer",
+                  activeImageIdx === idx
+                    ? "ring-2 ring-white scale-110"
+                    : "opacity-70 hover:opacity-100",
+                )}
               >
                 <img
                   src={img.thumb}
                   alt={`Thumbnail ${idx}`}
-                  className={isMobile ? "w-8 h-8 object-cover" : ""}
+                  className={cn(isMobile && "w-8 h-8 object-cover")}
                 />
               </button>
             ))}
@@ -277,12 +294,15 @@ const GalleryContent = ({
 
         <button
           onClick={handleNext}
-          className={`absolute ${isMobile ? "-right-4" : "-right-10"} top-1/2 -translate-y-1/2 cursor-pointer z-10`}
+          className={cn(
+            "absolute top-1/2 -translate-y-1/2 cursor-pointer z-10",
+            isMobile ? "-right-4" : "-right-10",
+          )}
         >
           <img
             src={navRight}
             alt="nav right"
-            className={isMobile ? "w-8 h-8" : ""}
+            className={cn(isMobile && "w-8 h-8")}
           />
         </button>
       </div>

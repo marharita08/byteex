@@ -4,6 +4,7 @@ import arrowRight from "@/assets/arrow_right.svg";
 import navLeft from "@/assets/nav_left.svg";
 import navRight from "@/assets/nav_right.svg";
 import star from "@/assets/star.svg";
+import { cn } from "@/utils/cn";
 
 const modules = import.meta.glob<{ default: string }>(
   "@/assets/reviews_*.png",
@@ -34,8 +35,10 @@ export const Reviews = () => {
   ];
 
   const [reviews, setReviews] = useState(initialReviews);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   const handleNext = () => {
+    setActiveIdx((prev) => (prev + 1) % initialReviews.length);
     setReviews((prev) => {
       const next = [...prev];
       const first = next.shift();
@@ -45,6 +48,9 @@ export const Reviews = () => {
   };
 
   const handlePrev = () => {
+    setActiveIdx(
+      (prev) => (prev - 1 + initialReviews.length) % initialReviews.length,
+    );
     setReviews((prev) => {
       const next = [...prev];
       const last = next.pop();
@@ -57,19 +63,19 @@ export const Reviews = () => {
   const row2 = reviewImages.slice(11);
 
   return (
-    <section className="w-full pb-26 flex flex-col items-center overflow-hidden">
-      <div className="max-w-[700px] mx-auto px-6 text-center mb-14 flex flex-col gap-6">
-        <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia">
+    <section className="w-full pb-16 md:pb-26 flex flex-col items-center overflow-hidden">
+      <div className="max-w-[700px] mx-auto px-6 text-center mb-10 md:mb-14 flex flex-col gap-5 md:gap-6">
+        <h2 className="text-[26px] md:text-[32px] leading-[34px] md:leading-[40px] tracking-[0.04em] text-primary font-sofia">
           What are our fans saying?
         </h2>
-        <p className="text-[15px] leading-[23px] tracking-[0.03em] text-neutral-400 max-w-[600px]">
+        <p className="text-[14px] md:text-[15px] leading-[22px] md:leading-[23px] tracking-[0.03em] text-neutral-400 max-w-[600px] mx-auto">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
           lobortis sapien facilisis tincidunt pellentesque. In eget ipsum et
           felis finibus consequat. Fusce non nibh luctus.
         </p>
       </div>
 
-      <div className="w-full mb-19 flex flex-col gap-1.5 overflow-hidden relative">
+      <div className="w-full mb-10 md:mb-19 flex flex-col gap-1.5 overflow-hidden relative">
         <div className="flex w-max animate-marquee">
           <div className="flex gap-1.5 px-2">
             {[...row1, ...row1].map((src, idx) => (
@@ -99,7 +105,8 @@ export const Reviews = () => {
         </div>
       </div>
 
-      <div className="max-w-[1306px] mx-auto px-6 w-full flex justify-center gap-13 mb-16">
+      {/* Desktop Reviews View */}
+      <div className="hidden md:flex max-w-[1306px] mx-auto px-6 w-full justify-center gap-13 mb-16">
         <div className="relative top-[100px]">
           <button
             onClick={handlePrev}
@@ -108,7 +115,7 @@ export const Reviews = () => {
             <img src={navLeft} alt="arrow left" className="w-6 h-6" />
           </button>
         </div>
-        <div className="flex flex-col md:flex-row items-start justify-center gap-10">
+        <div className="flex items-start justify-center gap-10">
           {reviews.map((review, idx) => (
             <div
               key={`${review.author}-${idx}`}
@@ -143,8 +150,53 @@ export const Reviews = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-4 px-6">
-        <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-[356px] h-[56px] transition-opacity hover:opacity-90">
+      {/* Mobile Reviews View */}
+      <div className="md:hidden flex flex-col items-center gap-6 mb-10 w-full px-6">
+        <div className="flex items-center justify-center w-full gap-5">
+          <button onClick={handlePrev} className="cursor-pointer shrink-0">
+            <img src={navLeft} alt="prev" className="w-2" />
+          </button>
+
+          <div className="flex-1 bg-background-white border border-border-muted shadow-md rounded-lg py-8 px-6 flex flex-col gap-3 w-full transition-all duration-300 max-w-[299px]">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-accent-blue shrink-0" />
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <img key={i} src={star} alt="star" className="w-3 h-3" />
+                  ))}
+                </div>
+                <span className="text-[15px] leading-[23px] tracking-[0.03em] text-neutral-300">
+                  {reviews[0].author}
+                </span>
+              </div>
+            </div>
+            <p className="text-[12px] leading-[23px] tracking-[0.04em] text-neutral-400 font-suisse">
+              {reviews[0].text}
+            </p>
+          </div>
+
+          <button onClick={handleNext} className="cursor-pointer shrink-0">
+            <img src={navRight} alt="next" className="w-2" />
+          </button>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex gap-2">
+          {initialReviews.map((_, i) => (
+            <div
+              key={i}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                activeIdx === i ? "bg-black" : "bg-divider",
+              )}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center gap-4 px-6 w-full">
+        <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-full max-w-[381px] md:w-[356px] h-[56px] transition-opacity hover:opacity-90">
           <span>Customize Your Outfit</span>
           <img src={arrowRight} alt="arrow right" className="w-6 h-6" />
         </button>
