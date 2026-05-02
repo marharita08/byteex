@@ -1,4 +1,3 @@
-import arrowRight from "@/assets/arrow_right.svg";
 import cards from "@/assets/cards.png";
 import clock from "@/assets/clock.svg";
 import finalCta1 from "@/assets/final_cta_1.png";
@@ -6,6 +5,7 @@ import finalCta2 from "@/assets/final_cta_2.png";
 import finalCta3 from "@/assets/final_cta_3.png";
 import shild from "@/assets/shild.svg";
 
+import { Button } from "./common/Button";
 import { CartIcon } from "./icons/CartIcon";
 import { TruckIcon } from "./icons/TruckIcon";
 
@@ -42,10 +42,7 @@ export const FinalCta = () => {
       </div>
 
       <div className="flex flex-col items-center gap-4 mb-2">
-        <button className="bg-primary text-primary-foreground font-suisse border-none rounded text-lg font-medium cursor-pointer flex items-center justify-center gap-6 w-[374px] h-[56px] transition-opacity hover:opacity-90">
-          <span>Customize Your Outfit</span>
-          <img src={arrowRight} alt="" className="w-6 h-6" />
-        </button>
+        <Button className="w-[374px]" />
       </div>
 
       <div className="flex items-center gap-2.5 mb-4.5 pl-1">

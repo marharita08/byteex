@@ -4,6 +4,8 @@ import faq1 from "@/assets/faq_1.png";
 import faq2 from "@/assets/faq_2.png";
 import faq3 from "@/assets/faq_3.png";
 
+import { CtaWithReviews } from "./common/CtaWithReviews";
+
 export const FAQ = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
@@ -42,8 +44,8 @@ export const FAQ = () => {
 
   return (
     <section className="w-full pb-10.5 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between">
-      <div className="w-full lg:w-[631px]">
-        <h2 className="text-[32px] leading-[40px] tracking-[0.04em] text-primary font-sofia font-normal mb-10">
+      <div className="w-full lg:w-[631px] flex flex-col items-center lg:items-start">
+        <h2 className="lowercase md:normal-case w-[318px] lg:w-full text-center md:text-left text-[26px] md:text-[32px] leading-[30px] md:leading-[40px] tracking-[0.04em] text-primary font-sofia font-normal mb-10">
           Frequently asked questions.
         </h2>
 
@@ -67,7 +69,7 @@ export const FAQ = () => {
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedIndex === idx ? "max-h-[200px] pb-5" : "max-h-0"}`}
               >
-                <p className="text-[15px] leading-[22px] tracking-[0.03em] text-neutral-400 font-sofia font-normal max-w-[567px]">
+                <p className="text-[14px] md:text-[15px] leading-[20px] md:leading-[22px] tracking-[0.03em] text-neutral-400 font-sofia font-normal max-w-[567px]">
                   {item.answer}
                 </p>
               </div>
@@ -77,7 +79,7 @@ export const FAQ = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-[430px] h-[645px] relative shrink-0">
+      <div className="hidden lg:block w-full lg:w-[430px] h-[645px] relative shrink-0">
         <div className="relative w-full h-full">
           <div className="absolute left-[30px] top-[67px] w-[149px] h-[187px] z-0 bg-linear-to-b from-background to-background/31" />
 
@@ -102,6 +104,11 @@ export const FAQ = () => {
           />
         </div>
       </div>
+
+      <CtaWithReviews
+        className="mt-10 md:hidden"
+        buttonClassName="max-w-[381px]"
+      />
     </section>
   );
 };
